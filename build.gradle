@@ -1,0 +1,47 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+plugins {
+	id 'org.springframework.boot' version '2.3.4.RELEASE' apply false
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+allprojects{
+	group = 'com.example'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = '11'
+}
+
+subprojects {
+	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'java'
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencyManagement{
+		imports{
+			mavenBom(SpringBootPlugin.BOM_COORDINATES)
+		}
+	}
+
+	dependencies {
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+		testImplementation('org.springframework.boot:spring-boot-starter-test') {
+			exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+		}
+	}
+
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+test {
+	useJUnitPlatform()
+}

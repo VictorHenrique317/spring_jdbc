@@ -1,0 +1,7 @@
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter')
+
+    implementation group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+}
