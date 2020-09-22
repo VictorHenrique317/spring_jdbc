@@ -11,7 +11,7 @@ public interface OrganizationDao {
     void setDataSource(DataSource dataSource);
 
     // Create a record in the organization table
-    void create(Organization org);
+    boolean create(Organization org);
 
     // Retrieve a single organization
     Organization getOrganization(Integer id);
